@@ -1,0 +1,40 @@
+{% extends "shortener/base.html" %}
+{% load static %}
+{% block title %}Shortened URL{% endblock %}
+{% block main %}
+<main>
+<section id="content">
+<h1>Your shortened URL</h1>
+<p>Copy the shortened link and share it in messages, texts, posts, websites and other locations.</p>
+</section>
+<script src="{% static 'shortener/js/script.min.js' %}"></script>
+<script type="text/javascript">
+  var clipboard = new Clipboard('.copy');
+  </script>
+<script type="text/javascript">
+      function toggle_visibility(id) {
+         var e = document.getElementById(id);
+         if(e.style.display == "none")
+            e.style.display = "table";
+         //else
+            //e.style.display = "none";
+      }
+  </script>
+<section id="urlbox">
+<br><br>
+<div id="formurl" style="max-width: 400px;">
+<input id="shortenurl" type="text" value="{{ request.get_host }}/{{ object.shortcode }}" onclick="this.select();">
+<div id="formbutton">
+<input type="button" data-clipboard-target="#shortenurl" class="copy" value="Copy URL" onclick="toggle_visibility('balloon');">
+</div>
+</div>
+<div id="formurl" style="max-width: 400px; display: block;">
+<div id="balloon" style="display: none;">URL Copied</div>
+</div>
+<p class="boxtextleft">Long URL: <a href="{{ object.url }}" target="_blank">{{ object.url }}</a><br><br>
+    This shortened URL is click {% if object.clickevent.count %} <strong>{{ object.clickevent.count }}</strong>  times {% else %} <strong>0</strong> times {% endif %}
+</p>
+<p class="boxtextleft"><a href="/" class="colorbutton">Create other shortened URL</a></p>
+</section>
+</main>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "shortener/base.html" %}
+<!--	{% block styles %}-->
+<!--	<style>-->
+<!--	body {-->
+<!--		background-color: #226268;-->
+<!--		background-image: url("https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?cs=srgb&dl=beach-exotic-holiday-248797.jpg&fm=jpg");-->
+<!--	}-->
+<!--/*	.btn-link {-->
+<!--		color: #50dfec;-->
+<!--		text-shadow: none;-->
+<!--	}-->
+<!--	.btn-link:hover {-->
+<!--		color: #000000;-->
+<!--	}-->
+<!--*/	</style>-->
+<!--	{% endblock styles %}-->
+{% block title %}URL Shortener{% endblock %}
+{% block main %}
+<section id="urlbox">
+    <h1>Paste the URL to be shortened</h1>
+    <form action="." method="post">
+        {% csrf_token %}
+        <div id="formurl">
+            {{ form.as_p }}
+            <div id="formbutton">
+                <input type="submit" value="Shorten URL">
+            </div>
+        </div>
+    </form>
+    <p class="boxtextcenter">ShortURL is a free service to shorten URLs and create short links</p>
+</section>
+<!--<div class="container">-->
+<!--	<div class='row'>-->
+<!--		<div class="text-center col-sm-12">-->
+<!--			<h1>{{ title }}</h1>-->
+<!--			&lt;!&ndash; <div class="text-center col-sm-4 col-sm-offset-4"> &ndash;&gt;-->
+<!--				<form method='POST' action='.'>-->
+<!--					{% csrf_token %}-->
+<!--					&lt;!&ndash; <input type="text" name="url" placeholder="Shorten your url"> &ndash;&gt;-->
+<!--					{{ form.as_p }}-->
+<!--					<input class="btn btn-primary" type='submit' value="Shorten &raquo;">-->
+<!--				</form>-->
+<!--			&lt;!&ndash; </div> &ndash;&gt;-->
+<!--		</div>  -->
+<!--	</div>-->
+<!--</div>  -->
+{% endblock %}
