@@ -7,25 +7,21 @@
 <h1>Your shortened URL</h1>
 <p>Copy the shortened link and share it in messages, texts, posts, websites and other locations.</p>
 </section>
-<script src="{% static 'shortener/js/script.min.js' %}"></script>
 <script type="text/javascript">
-  var clipboard = new Clipboard('.copy');
-  </script>
-<script type="text/javascript">
-      function toggle_visibility(id) {
-         var e = document.getElementById(id);
-         if(e.style.display == "none")
-            e.style.display = "table";
-         //else
-            //e.style.display = "none";
-      }
-  </script>
+function copy_to_clipboard() {
+     const text_node = document.getElementById('shortenurl')
+     navigator.clipboard.writeText(text_node.value);
+     const e = document.getElementById('balloon');
+     if(e.style.display == "none")
+        e.style.display = "table";
+}
+</script>
 <section id="urlbox">
 <br><br>
 <div id="formurl" style="max-width: 400px;">
-<input id="shortenurl" type="text" value="{{ request.get_host }}/{{ object.shortcode }}" onclick="this.select();">
+<input id="shortenurl" type="text" value="{{ request.get_host }}/{{ object.shortcode }}" onclick="this.select();" readonly>
 <div id="formbutton">
-<input type="button" data-clipboard-target="#shortenurl" class="copy" value="Copy URL" onclick="toggle_visibility('balloon');">
+<input type="button" value="Copy URL" onclick="copy_to_clipboard();">
 </div>
 </div>
 <div id="formurl" style="max-width: 400px; display: block;">
