@@ -1,6 +1,6 @@
 from django.conf import settings
-from django.core.urlresolvers import reverse
 from django.db import models
+from django.urls import reverse
 
 from .utils import create_shortcode
 from .validators import validate_url
@@ -9,7 +9,6 @@ SHORTCODE_MAX = getattr(settings, "SHORTCODE_MAX", 15)
 
 
 # Create your models here.
-
 class ShortURLManager(models.Manager):
     def get_queryset(self):
         return super(ShortURLManager, self).get_queryset().filter(active=True)
@@ -21,7 +20,6 @@ class ShortURLManager(models.Manager):
         new_codes = 0
         for q in qs:
             q.shortcode = create_shortcode(q)
-            # print(q.id)
             q.save()
             new_codes += 1
         return "New codes made: {i}".format(i=new_codes)

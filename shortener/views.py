@@ -8,7 +8,6 @@ from .models import ShortURL
 
 
 # Create your views here.
-
 class URLRedirectView(View):
     def get(self, request, shortcode):
         obj = get_object_or_404(ShortURL, shortcode=shortcode)
